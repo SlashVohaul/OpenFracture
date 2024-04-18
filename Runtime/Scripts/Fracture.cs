@@ -6,7 +6,6 @@ namespace OpenFracture
 {
     [RequireComponent(typeof(MeshFilter))]
     [RequireComponent(typeof(MeshRenderer))]
-    [RequireComponent(typeof(Rigidbody))]
     public class Fracture : MonoBehaviour
     {
         public TriggerOptions triggerOptions;
@@ -152,15 +151,15 @@ namespace OpenFracture
                         this.fragmentRoot.transform,
                         () =>
                         {
-                        // Done with template, destroy it
-                        GameObject.Destroy(fragmentTemplate);
+                            // Done with template, destroy it
+                            GameObject.Destroy(fragmentTemplate);
 
-                        // Deactivate the original object
-                        this.gameObject.SetActive(false);
+                            // Deactivate the original object
+                            this.gameObject.SetActive(false);
 
-                        // Fire the completion callback
-                        if ((this.currentRefractureCount == 0) ||
-                                (this.currentRefractureCount > 0 && this.refractureOptions.invokeCallbacks))
+                            // Fire the completion callback
+                            if ((this.currentRefractureCount == 0) ||
+                                    (this.currentRefractureCount > 0 && this.refractureOptions.invokeCallbacks))
                             {
                                 if (callbackOptions.onCompleted != null)
                                 {
@@ -227,7 +226,7 @@ namespace OpenFracture
             fragmentCollider.isTrigger = thisCollider.isTrigger;
 
             // Copy rigid body properties to fragment
-            var thisRigidBody = this.GetComponent<Rigidbody>();
+            var thisRigidBody = this.transform.parent.GetComponent<Rigidbody>();
             var fragmentRigidBody = obj.AddComponent<Rigidbody>();
             fragmentRigidBody.velocity = thisRigidBody.velocity;
             fragmentRigidBody.angularVelocity = thisRigidBody.angularVelocity;
