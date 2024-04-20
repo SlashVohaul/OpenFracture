@@ -226,7 +226,7 @@ namespace OpenFracture
             fragmentCollider.isTrigger = thisCollider.isTrigger;
 
             // Copy rigid body properties to fragment
-            var thisRigidBody = this.transform.parent.GetComponent<Rigidbody>();
+            var thisRigidBody = this.GetComponentInParent<Rigidbody>();
             var fragmentRigidBody = obj.AddComponent<Rigidbody>();
             fragmentRigidBody.velocity = thisRigidBody.velocity;
             fragmentRigidBody.angularVelocity = thisRigidBody.angularVelocity;

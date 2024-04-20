@@ -237,7 +237,7 @@ namespace OpenFracture
             }
 
             var parentSize = sourceObject.GetComponent<MeshFilter>().sharedMesh.bounds.size;
-            var parentMass = sourceObject.transform.parent.GetComponent<Rigidbody>().mass;
+            var parentMass = sourceObject.GetComponentInParent<Rigidbody>().mass;
 
             for (int k = 0; k < meshes.Length; k++)
             {
@@ -261,7 +261,7 @@ namespace OpenFracture
                 collider.sharedMaterial = fragment.GetComponent<Collider>().sharedMaterial;
 
                 // Compute mass of the sliced object by dividing mesh bounds by density
-                var parentRigidBody = sourceObject.transform.parent.GetComponent<Rigidbody>();
+                var parentRigidBody = sourceObject.GetComponentInParent<Rigidbody>();
                 var rigidBody = fragment.GetComponent<Rigidbody>();
 
                 var size = fragmentMesh.bounds.size;
